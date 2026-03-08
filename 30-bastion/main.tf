@@ -4,13 +4,13 @@ resource "aws_instance" "bastion" {
   subnet_id = local.public_subnet_id
   vpc_security_group_ids = [local.bastion_sg_id]
   iam_instance_profile = aws_iam_instance_profile.bastion.name
+  user_data = file("bastion.sh")
 
   tags = merge ( local.common_tags,
     {
       Name = "${var.project}-${var.environment}-bastion" , 
     }
   )
-  user_data = file("bastion.sh")
 
   root_block_device {
     volume_size = 50
@@ -44,13 +44,17 @@ resource "aws_iam_role" "bastion" {
     ]
   })
 
-  tags = local.common_tags
-
+  tags =  merge(
+    {
+        Name = "RoboShopDevBastion"
+    },
+    local.common_tags
+  )
 }
 
 resource "aws_iam_role_policy_attachment" "bastion" {
   role       = aws_iam_role.bastion.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
 }
 
 resource "aws_iam_instance_profile" "bastion" {
