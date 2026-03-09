@@ -21,6 +21,7 @@ resource "terraform_data" "mongodb" {
       type = "ssh"
       user = "ec2-user"
       password = local.ssh_password
+      
       host = aws_instance.mongodb.private_ip
     }
 
