@@ -11,4 +11,4 @@ git clone https://github.com/Zakeer3551/ansible-roboshop-roles-tf.git
 
 cd ansible-roboshop-roles-tf
 git pull
-ansible-playbook -e "component=$component" -e "deploy_environment=$environment" roboshop.yaml
+ansible-playbook -e "component=$component" -e "environment=$environment" roboshop.yaml
