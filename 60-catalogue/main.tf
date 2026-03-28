@@ -1,5 +1,5 @@
 resource "aws_instance" "catalogue" {
-  ami                    = data.aws_ami.daws88-s
+  ami                    = data.aws_ami.daws88-s.id
   instance_type          = var.instance
   vpc_security_group_ids = [local.catalogue_sg_id]
   subnet_id              = local.private_subnet_id
