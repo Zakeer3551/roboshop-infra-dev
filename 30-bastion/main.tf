@@ -1,14 +1,14 @@
 resource "aws_instance" "bastion" {
-  ami           = data.aws_ami.daws88-s.id
-  instance_type = "t3.micro"
-  subnet_id = local.public_subnet_id
+  ami                    = data.aws_ami.daws88-s.id
+  instance_type          = "t3.micro"
+  subnet_id              = local.public_subnet_id
   vpc_security_group_ids = [local.bastion_sg_id]
-  iam_instance_profile = aws_iam_instance_profile.bastion.name
-  user_data = file("bastion.sh")
+  iam_instance_profile   = aws_iam_instance_profile.bastion.name
+  user_data              = file("bastion.sh")
 
-  tags = merge ( local.common_tags,
+  tags = merge(local.common_tags,
     {
-      Name = "${var.project}-${var.environment}-bastion" , 
+      Name = "${var.project}-${var.environment}-bastion",
     }
   )
 
@@ -18,9 +18,9 @@ resource "aws_instance" "bastion" {
     # EBS volume tags
     tags = merge(
       {
-          Name = "${var.project}-${var.environment}-bastion"
+        Name = "${var.project}-${var.environment}-bastion"
       },
-    local.common_tags
+      local.common_tags
     )
   }
 }
@@ -44,9 +44,9 @@ resource "aws_iam_role" "bastion" {
     ]
   })
 
-  tags =  merge(
+  tags = merge(
     {
-        Name = "RoboShopDevBastion"
+      Name = "RoboShopDevBastion"
     },
     local.common_tags
   )

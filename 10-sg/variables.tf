@@ -1,21 +1,21 @@
 variable "project" {
-    default = "roboshop"
+  default = "roboshop"
 }
 variable "environment" {
-    default = "dev"
+  default = "dev"
 }
 
 variable "sg_names" {
-    type = list
-    # Databases 
-   default = ["mongodb" , "redis" , "mysql" , "rabbitmq" ,
+  type = list(any)
+  # Databases 
+  default = ["mongodb", "redis", "mysql", "rabbitmq",
     # backend components
-    "catalogue" , "cart" , "user" , "shipping" , "payment" ,
+    "catalogue", "cart", "user", "shipping", "payment",
     # backend ALB
-    "backend_alb" ,
+    "backend_alb",
     # frontend and frontend_alb
-    "frontend" , "frontend_alb" , 
+    "frontend", "frontend_alb",
     # bastion to connect to these     
-    "bastion"]
-  
+  "bastion"]
+
 }

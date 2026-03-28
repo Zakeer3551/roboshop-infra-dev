@@ -1,8 +1,8 @@
 variable "project" {
-    default = "roboshop"
+  default = "roboshop"
 }
 variable "environment" {
-    default = "dev"
+  default = "dev"
 }
 
 variable "zone_id" {
@@ -10,9 +10,9 @@ variable "zone_id" {
 }
 
 variable "domain_name" {
-  default = "daws88-s.online"  
+  default = "daws88-s.online"
 }
 
 variable "instance" {
-    default = t3.micro
+  default = t3.micro
 }

@@ -17,23 +17,23 @@ resource "aws_iam_role" "mysql" {
     ]
   })
 
-  tags =  merge(
+  tags = merge(
     {
-        Name = "RoboShopDevMysql"
+      Name = "RoboShopDevMysql"
     },
     local.common_tags
   )
 }
 
 resource "aws_iam_policy" "mysql" {
-    name = local.mysql_policy_name
+  name        = local.mysql_policy_name
   description = "A policy for MySQL Ec2 instance"
-  policy = file("mysql-iam-policy.json")
-  
+  policy      = file("mysql-iam-policy.json")
+
 }
 
 resource "aws_iam_role_policy_attachment" "mysql" {
-  role = aws_iam_role.mysql.name
+  role       = aws_iam_role.mysql.name
   policy_arn = aws_iam_policy.mysql.arn
 }
 
