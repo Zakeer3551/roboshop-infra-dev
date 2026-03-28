@@ -14,5 +14,5 @@ variable "domain_name" {
 }
 
 variable "instance" {
-  default = t3.micro
+  default = "t3.micro"
 }
